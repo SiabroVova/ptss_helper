@@ -1,0 +1,16 @@
+#:kivy 1.0.9
+
+<EmdrBall>:
+    size: 50, 50
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<EmdrPlace>:
+    ball: pong_ball
+
+    EmdrBall:
+        id: pong_ball
+        center: self.parent.center
+
