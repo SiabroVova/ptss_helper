@@ -83,6 +83,7 @@ class EmdrApp(MDApp):
 
     s_button = ObjectProperty()
     game = ObjectProperty()
+    game_schedule = ObjectProperty()
 
     def __init__(self, **kwargs):
         super(EmdrApp, self).__init__(**kwargs)
@@ -104,10 +105,10 @@ class EmdrApp(MDApp):
         self.game = EmdrPlace()
         self.game.serve_ball()
         self.main_screen.add_widget(self.game)
-        self.game_shudle = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
+        self.game_schedule = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
 
     def stop_game(self):
-        self.game_shudle.cancel()
+        self.game_schedule.cancel()
         self.main_screen.remove_widget(self.game)
         self.main_screen.add_widget(self.center_button())
 
