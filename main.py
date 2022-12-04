@@ -1,3 +1,8 @@
+"""
+    зібрати додаток - buildozer -v android debug
+    зібрати та запустити - buildozer -v android debug deploy run
+
+"""
 from kivymd.app import MDApp
 from kivy import Config
 from kivy.utils import platform
@@ -57,6 +62,8 @@ class MainScreen(MDScreen):
 
 class EmdrApp(MDApp):
 
+    s_button = ObjectProperty()
+
     def __init__(self, **kwargs):
         super(EmdrApp, self).__init__(**kwargs)
         self.main_screen = MainScreen()
@@ -67,13 +74,14 @@ class EmdrApp(MDApp):
         return self.main_screen
 
     def center_button(self):
-        s_button = MDRectangleFlatButton(text="Натисніть для старту",
+        self.s_button = MDRectangleFlatButton(text="Натисніть для старту",
                                          on_release=self.add_game_widget)
-        s_button.pos_hint = {"center_x": 0.5, "center_y": 0.5}
-        return s_button
+        self.s_button.pos_hint = {"center_x": 0.5, "center_y": 0.5}
+        return self.s_button
 
     def add_game_widget(self, dt=0):
         self.main_screen.clear_widgets()
+        # self.s_button.opacity = 0
         game = EmdrPlace()
         game.serve_ball()
         self.main_screen.add_widget(game)
