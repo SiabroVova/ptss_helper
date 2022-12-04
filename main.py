@@ -6,6 +6,7 @@
 import os
 os.environ["KIVY_AUDIO"] = "ffpyplayer"
 
+from kivy.resources import resource_find
 from kivy.app import App
 from kivymd.app import MDApp
 from kivy import Config
@@ -51,7 +52,8 @@ class EmdrPlace(Widget):
     @staticmethod
     def play_sound():
         # if platform == 'android':
-        sound = SoundLoader.load('sound/boop.wav')
+        sound_file = resource_find('sound/boop.wav')
+        sound = SoundLoader.load(sound_file)
         if sound:
             sound.play()
 
