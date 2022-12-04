@@ -1,8 +1,16 @@
-#:kivy 1.0.9
+<MainScreen>:
+    name: "mainscreen"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
 
 <EmdrBall>:
     size: 50, 50
+    color: 1, 1, 0, 1
     canvas:
+        Color:
+            rgba: self.color
         Ellipse:
             pos: self.pos
             size: self.size
