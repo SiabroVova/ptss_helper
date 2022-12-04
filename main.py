@@ -3,15 +3,16 @@
     зібрати та запустити - buildozer -v android debug deploy run
 
 """
+import os
+os.environ["KIVY_AUDIO"] = "ffpyplayer"
+
 from kivy.app import App
 from kivymd.app import MDApp
 from kivy import Config
 from kivy.utils import platform
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
-from kivy.properties import (
-    NumericProperty, ReferenceListProperty, ObjectProperty
-)
+from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
@@ -21,6 +22,12 @@ from kivymd.uix.screen import MDScreen
 if platform not in ('android', 'ios'):
     Config.set('graphics', 'resizable', '0')
     Window.size = (400, 800)
+
+# На помилку не звертати увагу. Все буде працювати))
+elif platform == 'android':
+    from android.permissions import request_permissions, Permission
+    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE,
+                         Permission.INTERNET])
 
 
 class EmdrBall(Widget):
@@ -43,8 +50,9 @@ class EmdrPlace(Widget):
 
     @staticmethod
     def play_sound():
-        if platform == 'android':
-            sound = SoundLoader.load('sound/boop.wav')
+        # if platform == 'android':
+        sound = SoundLoader.load('sound/boop.wav')
+        if sound:
             sound.play()
 
     def update(self, dt):
@@ -94,11 +102,11 @@ class EmdrApp(MDApp):
         self.game = EmdrPlace()
         self.game.serve_ball()
         self.main_screen.add_widget(self.game)
-        Clock.schedule_interval(self.game.update, 1.0 / 60.0)
+        self.game_shudle = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
 
     def stop_game(self):
-        Clock.unschedule(self.game)
-        self.main_screen.clear_widgets()
+        self.game_shudle.cancel()
+        self.main_screen.remove_widget(self.game)
         self.main_screen.add_widget(self.center_button())
 
     def on_start(self):

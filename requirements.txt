@@ -6,6 +6,7 @@ colorama==0.4.6
 Cython==0.29.32
 distlib==0.3.6
 docutils==0.19
+ffpyplayer==4.3.5
 filelock==3.8.0
 idna==3.4
 importlib-metadata==5.1.0
