@@ -19,6 +19,13 @@ from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.label import MDLabel
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivy.uix.popup import Popup
+
+class P(MDFloatLayout):
+    pass
+
 
 if platform not in ('android', 'ios'):
     Config.set('graphics', 'resizable', '0')
@@ -42,6 +49,9 @@ class EmdrBall(Widget):
 
 
 class EmdrPlace(Widget):
+
+    def btn(self):
+        show_popup()
 
     ball = ObjectProperty(None)
 
@@ -115,6 +125,10 @@ class EmdrApp(MDApp):
     def on_start(self):
         self.main_screen.add_widget(self.center_button())
 
+def show_popup():
+    show = P()
+    popupWindow = Popup(title="Popup Window", content=show, size_hint=(None,None), size=(400,400))
+    popupWindow.open()
 
 if __name__ == '__main__':
     EmdrApp().run()
