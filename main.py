@@ -135,6 +135,7 @@ class EmdrApp(MDApp):
             self.test_dialog = MDDialog(
                 title="Popup Window",
                 text=f"[color=000000]Тестовий ПОПАП :)[/color]",
+                # content_cls=ClassForData(), якщо потрібно взяти розмітку з файлу KV у твому випадку то P()
                 buttons=[
                     MDFlatButton(
                         text="OK",
