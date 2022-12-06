@@ -4,6 +4,9 @@
 
 """
 import os
+os.environ['KIVY_TEXT'] = 'sdl2'
+os.environ['KIVY_IMAGE'] = 'pil,sdl2'
+os.environ['KIVY_WINDOW'] = 'sdl2'
 os.environ["KIVY_AUDIO"] = "ffpyplayer"
 
 from kivy.uix.screenmanager import ScreenManager
