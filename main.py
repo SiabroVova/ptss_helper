@@ -4,6 +4,9 @@
 
 """
 import os
+
+from kivymd.uix.dialog import MDDialog
+
 os.environ["KIVY_AUDIO"] = "ffpyplayer"
 
 from kivy.resources import resource_find
@@ -17,7 +20,7 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
-from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.button import MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.label import MDLabel
 from kivymd.uix.floatlayout import MDFloatLayout
@@ -61,11 +64,11 @@ class EmdrPlace(Widget):
 
     @staticmethod
     def play_sound():
-        # if platform == 'android':
-        sound_file = resource_find('sound/boop.wav')
-        sound = SoundLoader.load(sound_file)
-        if sound:
-            sound.play()
+        if platform == 'android':
+            sound_file = resource_find('sound/boop.wav')
+            sound = SoundLoader.load(sound_file)
+            if sound:
+                sound.play()
 
     def update(self, dt):
         self.ball.move()
@@ -94,6 +97,7 @@ class EmdrApp(MDApp):
     s_button = ObjectProperty()
     game = ObjectProperty()
     game_schedule = ObjectProperty()
+    test_dialog = None
 
     def __init__(self, **kwargs):
         super(EmdrApp, self).__init__(**kwargs)
@@ -124,11 +128,31 @@ class EmdrApp(MDApp):
 
     def on_start(self):
         self.main_screen.add_widget(self.center_button())
+        self.show_test_dialog()
 
-def show_popup():
-    show = P()
-    popupWindow = Popup(title="Popup Window", content=show, size_hint=(None,None), size=(400,400))
-    popupWindow.open()
+    def show_test_dialog(self):
+        if not self.test_dialog:
+            self.test_dialog = MDDialog(
+                title="Popup Window",
+                text=f"[color=000000]Тестовий ПОПАП :)[/color]",
+                buttons=[
+                    MDFlatButton(
+                        text="OK",
+                        on_release=self.close_test_dialog
+                    ),
+                ],
+            )
+            self.test_dialog.open()
+
+    def close_test_dialog(self, dt=0):
+        self.test_dialog.dismiss()
+        del self.test_dialog
+
+# def show_popup():
+#     show = P()
+#     popupWindow = Popup(title="Popup Window", content=show, size_hint=(None,None), size=(400,400))
+#     popupWindow.open()
+
 
 if __name__ == '__main__':
     EmdrApp().run()
