@@ -1,40 +1,7 @@
-<P>:
-    Label:
-        text: "You pressed the menu button"
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":1}
-    Button:
-        text: "You pressed the menu button"
-        size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "y":0.1}
+<ScreenManage>:
 
+    MainScreen:
+        name: 'main_screen'
 
-<MainScreen>:
-    name: "mainscreen"
-
-    MDBoxLayout:
-        orientation: "vertical"
-
-    Button:
-        text: "MENU"
-        on_release: root.btn()
-
-
-<EmdrBall>:
-    size: 50, 50
-    color: 1, 1, 0, 1
-    canvas:
-        Color:
-            rgba: self.color
-        Ellipse:
-            pos: self.pos
-            size: self.size
-
-<EmdrPlace>:
-    ball: pong_ball
-
-    EmdrBall:
-        id: pong_ball
-        center: self.parent.center
-
-
+    GameScreen:
+        name: 'game_screen'
