@@ -1,0 +1,42 @@
+<MainScreen>:
+    id: main_screen
+
+    MDTopAppBar:
+        id: toolbar_top
+        anchor_title: "left"
+        pos_hint: {"top": 1}
+        md_bg_color: 0, 0, 0, 0.0001
+        specific_text_color: 1, 1, 1, 1
+        title: 'МЕНЮ'
+        left_action_items: [["menu", lambda x: root.show_test_dialog()]]
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5, 'top': 1.0 - toolbar_top.height / self.parent.height}
+        size_hint: 1, 0.9
+
+        Widget:
+            size_hint: 1, 0.4
+
+        MDRectangleFlatButton:
+            text: "Натисніть для старту"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            on_release: root.press_start_game()
+
+        Widget:
+            size_hint: 1, 0.3
+
+        MD3Card:
+            orientation: "vertical"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint: .9, 0.3
+
+            BoxLayout:
+                padding: 10
+
+                MDLabel:
+                    text: "Тут налаштування"
+                    halign: 'center'
+
+        Widget:
+            size_hint: 1, 0.01

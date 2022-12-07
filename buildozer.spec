@@ -37,7 +37,7 @@ version.filename = %(source.dir)s/const.py
 requirements = python3,
                kivy==2.1.0,
                idna,
-               kivymd==1.1.1,
+               kivymd==1.0.2,
                pillow,
                ffmpeg,
                ffpyplayer
