@@ -30,12 +30,143 @@
             orientation: "vertical"
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             size_hint: .9, 0.3
+            padding: 5
 
             BoxLayout:
                 padding: 10
 
+            MDBoxLayout:
+                size_hint: .95, 1
+                pos_hint: {"center_x": 0.5}
+                spacing: 25
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "numeric-1"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .8)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "numeric-2"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .3)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "numeric-3"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .3)
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "volume-off"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .3)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "volume-high"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .8)
+
+            MDBoxLayout:
+                pos_hint: {"center_x": 0.5}
+
                 MDLabel:
-                    text: "Тут налаштування"
+                    text: "Швидкість"
+                    halign: 'center'
+
+                MDLabel:
+                    text: "Звук"
+                    halign: 'center'
+
+            Widget:
+
+            MDBoxLayout:
+                size_hint: .95, 1
+                pos_hint: {"center_x": 0.5}
+                spacing: 25
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "12sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .3)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "18sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, 1)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "26sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: (1, 1, 1, .3)
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 1, 1, 0, 1
+                        md_bg_color: (1, 1, 0, .65)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 1, 0, 0, .2
+                        md_bg_color: (1, 0, 0, .1)
+
+                    MDFloatingActionButton:
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: .21, .098, 1, .2
+                        md_bg_color: (.21, .098, 1, .1)
+
+            MDBoxLayout:
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    text: "Розмір"
+                    halign: 'center'
+
+                MDLabel:
+                    text: "Колір"
                     halign: 'center'
 
         Widget:
