@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.properties import NumericProperty
 from kivymd.uix.behaviors import CommonElevationBehavior
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.card import MDCard
@@ -17,9 +18,12 @@ class MainScreen(MDScreen):
     """ Main screen for aplication """
 
     test_dialog = None
+    speed = NumericProperty()
 
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
+        self.tuple_button = ('button_numeric_1', 'button_numeric_2', 'button_numeric_3')
+        self.speed = 1
 
     @staticmethod
     def game_screen():
@@ -60,3 +64,24 @@ class MainScreen(MDScreen):
         """ Close dialog window"""
         self.test_dialog.dismiss()
         del self.test_dialog
+
+    def press_button_numeric(self, icon):
+        if icon == 'numeric-1':
+            self.change_button_color('button_numeric_1')
+            self.speed = 1
+
+        elif icon == 'numeric-2':
+            self.change_button_color('button_numeric_2')
+            self.speed = 2
+
+        elif icon == 'numeric-3':
+            self.change_button_color('button_numeric_3')
+            self.speed = 3
+
+    def change_button_color(self, button_id):
+        list_for_remove = list(self.tuple_button)
+        list_for_remove.remove(button_id)
+        if self.ids[f'{button_id}'].md_bg_color != [1, 1, 1, .8]:
+            self.ids[f'{button_id}'].md_bg_color = [1, 1, 1, .8]
+            for button in list_for_remove:
+                self.ids[f'{button}'].md_bg_color = [1, 1, 1, .3]
