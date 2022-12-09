@@ -3,7 +3,7 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
-from kivy.properties import ObjectProperty, NumericProperty, ReferenceListProperty
+from kivy.properties import ObjectProperty, NumericProperty, ReferenceListProperty, ListProperty
 from kivy.resources import resource_find
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
@@ -25,10 +25,11 @@ class EmdrBall(Widget):
 class EmdrPlace(Widget):
 
     ball = ObjectProperty(None)
+    # speed = ListProperty()
 
-    def serve_ball(self, vel=(3, 3)):
+    def serve_ball(self, speed: list):
         self.ball.center = self.center
-        self.ball.velocity = vel
+        self.ball.velocity = speed
 
     @staticmethod
     def play_sound():
@@ -59,6 +60,7 @@ class GameScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super(GameScreen, self).__init__(**kwargs)
+        self.speed = 3, 3
 
     @staticmethod
     def main_screen():
@@ -69,7 +71,7 @@ class GameScreen(MDScreen):
     def start_game(self):
         """ Add widget and start game"""
         self.game = EmdrPlace()
-        self.game.serve_ball()
+        self.game.serve_ball(self.speed)
         self.add_widget(self.game)
         self.game_schedule = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
 
