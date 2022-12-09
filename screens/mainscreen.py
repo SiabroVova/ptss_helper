@@ -22,7 +22,9 @@ class MainScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
-        self.tuple_button = ('button_numeric_1', 'button_numeric_2', 'button_numeric_3')
+        self.numeric_button_tup = ('button_numeric_1', 'button_numeric_2', 'button_numeric_3')
+        self.volume_button_tup = ('button_volume_off', 'button_volume_high')
+        self.blank_circle_tup = ('button_circle_size_12', 'button_circle_size_18', 'button_circle_size_26')
 
     @staticmethod
     def switch_game_screen():
@@ -67,19 +69,41 @@ class MainScreen(MDScreen):
     def press_button_numeric(self, icon):
         self.game_screen = self.get_game_screen()
         if icon == 'numeric-1':
-            self.change_button_color('button_numeric_1')
+            self.change_button_color('button_numeric_1', 'numeric')
             self.game_screen.speed = 3, 3
 
         elif icon == 'numeric-2':
-            self.change_button_color('button_numeric_2')
+            self.change_button_color('button_numeric_2', 'numeric')
             self.game_screen.speed = 6, 6
 
         elif icon == 'numeric-3':
-            self.change_button_color('button_numeric_3')
+            self.change_button_color('button_numeric_3', 'numeric')
             self.game_screen.speed = 10, 10
 
-    def change_button_color(self, button_id):
-        list_for_remove = list(self.tuple_button)
+    def press_button_volume(self, icon):
+        self.game_screen = self.get_game_screen()
+        if icon == 'volume-off':
+            self.change_button_color('button_volume_off', 'volume')
+        else:
+            self.change_button_color('button_volume_high', 'volume')
+
+    def press_button_blank_circle(self, icon_size):
+        self.game_screen = self.get_game_screen()
+        if icon_size == 12:
+            self.change_button_color('button_circle_size_12')
+        elif icon_size == 18:
+            self.change_button_color('button_circle_size_18')
+        else:
+            self.change_button_color('button_circle_size_26')
+
+    def change_button_color(self, button_id, button=None):
+        if button == 'numeric':
+            list_for_remove = list(self.numeric_button_tup)
+        elif button == 'volume':
+            list_for_remove = list(self.volume_button_tup)
+        else:
+            list_for_remove = list(self.blank_circle_tup)
+
         list_for_remove.remove(button_id)
         if self.ids[f'{button_id}'].md_bg_color != [1, 1, 1, .8]:
             self.ids[f'{button_id}'].md_bg_color = [1, 1, 1, .8]
