@@ -65,6 +65,7 @@ class MainScreen(MDScreen):
         del self.test_dialog
 
     def press_button_numeric(self, icon):
+        self.game_screen = self.get_game_screen()
         if icon == 'numeric-1':
             self.change_button_color('button_numeric_1')
             self.game_screen.speed = 3, 3
