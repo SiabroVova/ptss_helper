@@ -18,15 +18,14 @@ class MainScreen(MDScreen):
     """ Main screen for aplication """
 
     test_dialog = None
-    speed = NumericProperty()
+    game_screen = None
 
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         self.tuple_button = ('button_numeric_1', 'button_numeric_2', 'button_numeric_3')
-        self.speed = 1
 
     @staticmethod
-    def game_screen():
+    def switch_game_screen():
         """ Switch to game screen """
         app = App.get_running_app()
         app.root.current = 'game_screen'
@@ -40,9 +39,9 @@ class MainScreen(MDScreen):
 
     def press_start_game(self):
         """ On presss start switch to game screen and start game"""
-        self.game_screen()
-        game_screen = self.get_game_screen()
-        game_screen.start_game()
+        self.switch_game_screen()
+        self.game_screen = self.get_game_screen()
+        self.game_screen.start_game()
 
     def show_test_dialog(self):
         """ Tests dialog window """
@@ -68,15 +67,15 @@ class MainScreen(MDScreen):
     def press_button_numeric(self, icon):
         if icon == 'numeric-1':
             self.change_button_color('button_numeric_1')
-            self.speed = 1
+            self.game_screen.speed = 3, 3
 
         elif icon == 'numeric-2':
             self.change_button_color('button_numeric_2')
-            self.speed = 2
+            self.game_screen.speed = 6, 6
 
         elif icon == 'numeric-3':
             self.change_button_color('button_numeric_3')
-            self.speed = 3
+            self.game_screen.speed = 10, 10
 
     def change_button_color(self, button_id):
         list_for_remove = list(self.tuple_button)
