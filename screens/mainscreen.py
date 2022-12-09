@@ -11,6 +11,8 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
 from kivymd.uix.snackbar import Snackbar
 from kivy.uix.popup import Popup
+from const import SIZE_BALL, SPEED_BALL, \
+    BACKGROUND_BUTTON_COLOR_PASSIVE, BACKGROUND_BUTTON_COLOR_ACTIVE
 
 
 Builder.load_file('screens/mainscreen.kv')
@@ -111,15 +113,15 @@ class MainScreen(MDScreen):
         self.game_screen = self.get_game_screen()
         if icon == 'numeric-1':
             self.change_button_color('button_numeric_1', 'numeric')
-            self.game_screen.speed = 3, 3
+            self.game_screen.speed = SPEED_BALL[0]
 
         elif icon == 'numeric-2':
             self.change_button_color('button_numeric_2', 'numeric')
-            self.game_screen.speed = 6, 6
+            self.game_screen.speed = SPEED_BALL[1]
 
         elif icon == 'numeric-3':
             self.change_button_color('button_numeric_3', 'numeric')
-            self.game_screen.speed = 10, 10
+            self.game_screen.speed = SPEED_BALL[2]
 
     def press_button_volume(self, icon):
         self.game_screen = self.get_game_screen()
@@ -134,13 +136,13 @@ class MainScreen(MDScreen):
         self.game_screen = self.get_game_screen()
         if icon_size == 12:
             self.change_button_color('button_circle_size_12')
-            self.game_screen.size_ball = 20, 20
+            self.game_screen.size_ball = SIZE_BALL[0]
         elif icon_size == 18:
             self.change_button_color('button_circle_size_18')
-            self.game_screen.size_ball = 40, 40
+            self.game_screen.size_ball = SIZE_BALL[1]
         else:
             self.change_button_color('button_circle_size_26')
-            self.game_screen.size_ball = 60, 60
+            self.game_screen.size_ball = SIZE_BALL[2]
 
     def change_button_color(self, button_id, button=None):
         if button == 'numeric':
@@ -151,7 +153,7 @@ class MainScreen(MDScreen):
             list_for_remove = list(self.blank_circle_tup)
 
         list_for_remove.remove(button_id)
-        if self.ids[f'{button_id}'].md_bg_color != [1, 1, 1, .8]:
-            self.ids[f'{button_id}'].md_bg_color = [1, 1, 1, .8]
+        if self.ids[f'{button_id}'].md_bg_color != BACKGROUND_BUTTON_COLOR_ACTIVE:
+            self.ids[f'{button_id}'].md_bg_color = BACKGROUND_BUTTON_COLOR_ACTIVE
             for button in list_for_remove:
-                self.ids[f'{button}'].md_bg_color = [1, 1, 1, .3]
+                self.ids[f'{button}'].md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
