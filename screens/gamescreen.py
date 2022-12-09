@@ -24,20 +24,23 @@ class EmdrBall(Widget):
 
 class EmdrPlace(Widget):
 
-    ball = ObjectProperty(None)
-    # speed = ListProperty()
+    ball = ObjectProperty()
+    volume = NumericProperty()
+    size_ball = ListProperty()
+    speed_ball = ListProperty()
 
-    def serve_ball(self, speed: list):
+    def serve_ball(self):
         self.ball.center = self.center
-        self.ball.velocity = speed
+        self.ball.velocity = self.speed_ball
+        self.ball.size = self.size_ball
 
-    @staticmethod
-    def play_sound():
-        if platform == 'android':
-            sound_file = resource_find('sound/boop.wav')
-            sound = SoundLoader.load(sound_file)
-            if sound:
-                sound.play()
+    def play_sound(self):
+        # if platform == 'android':
+        sound_file = resource_find('sound/boop.wav')
+        sound = SoundLoader.load(sound_file)
+        if sound:
+            sound.volume = self.volume
+            sound.play()
 
     def update(self, dt):
         self.ball.move()
@@ -57,10 +60,12 @@ class GameScreen(MDScreen):
 
     game = ObjectProperty()
     game_schedule = ObjectProperty()
+    speed = ListProperty([3, 3])
+    size_ball = ListProperty([20, 20])
+    volume = NumericProperty(1)
 
     def __init__(self, **kwargs):
         super(GameScreen, self).__init__(**kwargs)
-        self.speed = 3, 3
 
     @staticmethod
     def main_screen():
@@ -71,7 +76,10 @@ class GameScreen(MDScreen):
     def start_game(self):
         """ Add widget and start game"""
         self.game = EmdrPlace()
-        self.game.serve_ball(self.speed)
+        self.game.size_ball = self.size_ball
+        self.game.speed_ball = self.speed
+        self.game.volume = self.volume
+        self.game.serve_ball()
         self.add_widget(self.game)
         self.game_schedule = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
 

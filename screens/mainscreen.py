@@ -125,17 +125,22 @@ class MainScreen(MDScreen):
         self.game_screen = self.get_game_screen()
         if icon == 'volume-off':
             self.change_button_color('button_volume_off', 'volume')
+            self.game_screen.volume = 0
         else:
             self.change_button_color('button_volume_high', 'volume')
+            self.game_screen.volume = 1
 
     def press_button_blank_circle(self, icon_size):
         self.game_screen = self.get_game_screen()
         if icon_size == 12:
             self.change_button_color('button_circle_size_12')
+            self.game_screen.size_ball = 20, 20
         elif icon_size == 18:
             self.change_button_color('button_circle_size_18')
+            self.game_screen.size_ball = 40, 40
         else:
             self.change_button_color('button_circle_size_26')
+            self.game_screen.size_ball = 60, 60
 
     def change_button_color(self, button_id, button=None):
         if button == 'numeric':
