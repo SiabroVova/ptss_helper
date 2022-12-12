@@ -5,7 +5,7 @@
         id: toolbar_top
         anchor_title: "left"
         pos_hint: {"top": 1}
-        md_bg_color: 0, 0, 0, 0.0001
+        md_bg_color: app.theme_cls.accent_color
         specific_text_color: 1, 1, 1, 1
         title: 'МЕНЮ'
         left_action_items: [["menu", lambda x: root.callback(x)]]
@@ -28,6 +28,7 @@
 
         MD3Card:
             orientation: "vertical"
+            md_bg_color: app.theme_cls.accent_color
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             size_hint: .9, 0.3
             padding: 5

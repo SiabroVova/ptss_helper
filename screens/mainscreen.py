@@ -89,7 +89,7 @@ class MainScreen(MDScreen):
         if not self.test_dialog:
             self.test_dialog = MDDialog(
                 title=f"{item['name']}",
-                text=f"[color=ace3cd] {item['content']} [/color]",
+                text=f"[color=6b6357] {item['content']} [/color]",
                 buttons=[
                     MDFlatButton(
                         text="OK",
