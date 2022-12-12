@@ -156,28 +156,34 @@
                     pos_hint: {"center_x": 0.5}
 
                     MDFloatingActionButton:
+                        id: button_color_yellow
                         size_hint: .2, 1
                         icon: "checkbox-blank-circle"
                         icon_size: "20sp"
                         theme_icon_color: "Custom"
                         icon_color: 1, 1, 0, 1
-                        md_bg_color: (1, 1, 0, .65)
+                        md_bg_color: [1, 1, 0, 0.65]
+                        on_release: root.press_color_button('yellow')
 
                     MDFloatingActionButton:
+                        id: button_color_red
                         size_hint: .2, 1
                         icon: "checkbox-blank-circle"
                         icon_size: "20sp"
                         theme_icon_color: "Custom"
-                        icon_color: 1, 0, 0, .2
-                        md_bg_color: (1, 0, 0, .1)
+                        icon_color: 1, 0, 0, 0.2
+                        md_bg_color: [1, 0, 0, 0.05]
+                        on_release: root.press_color_button('red')
 
                     MDFloatingActionButton:
+                        id: button_color_blue
                         size_hint: .2, 1
                         icon: "checkbox-blank-circle"
                         icon_size: "20sp"
                         theme_icon_color: "Custom"
-                        icon_color: .21, .098, 1, .2
-                        md_bg_color: (.21, .098, 1, .1)
+                        icon_color: 0.21, 0.098, 1, 0.2
+                        md_bg_color: [0.21, 0.098, 1, 0.05]
+                        on_release: root.press_color_button('blue')
 
             MDBoxLayout:
                 pos_hint: {"center_x": 0.5}

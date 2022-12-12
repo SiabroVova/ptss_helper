@@ -1,4 +1,3 @@
-from kivy import platform
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
@@ -28,19 +27,21 @@ class EmdrPlace(Widget):
     volume = NumericProperty()
     size_ball = ListProperty()
     speed_ball = ListProperty()
+    color_ball = ListProperty()
 
     def serve_ball(self):
         self.ball.center = self.center
         self.ball.velocity = self.speed_ball
         self.ball.size = self.size_ball
+        self.ball.color = self.color_ball
 
     def play_sound(self):
-        # if platform == 'android':
-        sound_file = resource_find('sound/boop.wav')
-        sound = SoundLoader.load(sound_file)
-        if sound:
-            sound.volume = self.volume
-            sound.play()
+        if self.volume == 1:
+            sound_file = resource_find('sound/boop.wav')
+            sound = SoundLoader.load(sound_file)
+            if sound:
+                sound.volume = self.volume
+                sound.play()
 
     def update(self, dt):
         self.ball.move()
@@ -63,6 +64,7 @@ class GameScreen(MDScreen):
     speed = ListProperty([3, 3])
     size_ball = ListProperty([20, 20])
     volume = NumericProperty(1)
+    color_ball = ListProperty([1, 1, 0, 1])
 
     def __init__(self, **kwargs):
         super(GameScreen, self).__init__(**kwargs)
@@ -74,11 +76,12 @@ class GameScreen(MDScreen):
         app.root.current = 'main_screen'
 
     def start_game(self):
-        """ Add widget and start game"""
+        """ Add widget, parameters for ball and start game"""
         self.game = EmdrPlace()
         self.game.size_ball = self.size_ball
         self.game.speed_ball = self.speed
         self.game.volume = self.volume
+        self.game.color_ball = self.color_ball
         self.game.serve_ball()
         self.add_widget(self.game)
         self.game_schedule = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
