@@ -11,6 +11,7 @@ from const import SIZE_BALL, SPEED_BALL, \
     BACKGROUND_BUTTON_COLOR_PASSIVE, BACKGROUND_BUTTON_COLOR_ACTIVE
 
 
+
 Builder.load_file('screens/mainscreen.kv')
 
 menu_dict = {
@@ -58,7 +59,7 @@ class MainScreen(MDScreen):
                 "viewclass": "OneLineListItem",
                 "text": f"{item[1]['name']}",
                 "height": dp(56),
-                "on_release": lambda x=f"{item[1]['content']}": self.menu_callback(x),
+                "on_release": lambda x=dict(item[1]): self.menu_callback(x),
             } for item in menu_dict.items()
         ]
         self.menu = MDDropdownMenu(
@@ -70,9 +71,9 @@ class MainScreen(MDScreen):
         self.menu.caller = button
         self.menu.open()
 
-    def menu_callback(self, text_item):
+    def menu_callback(self, item):
         self.menu.dismiss()
-        self.show_test_dialog(text_item)
+        self.show_test_dialog(item)
 
     @staticmethod
     def switch_game_screen():
@@ -93,13 +94,12 @@ class MainScreen(MDScreen):
         self.game_screen = self.get_game_screen()
         self.game_screen.start_game()
 
-    def show_test_dialog(self, content):
-        """ Tests dialog window """
+    def show_test_dialog(self, item):
+        """ Dialog window for menu items """
         if not self.test_dialog:
             self.test_dialog = MDDialog(
-                title="Popup Window",
-                text=f"[color=ace3cd] {content} [/color]",
-                # content_cls=ClassForData(), якщо потрібно взяти розмітку з файлу KV у твому випадку то P()
+                title=f"{item['name']}",
+                text=f"[color=6b6357] {item['content']} [/color]",
                 buttons=[
                     MDFlatButton(
                         text="OK",

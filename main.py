@@ -44,7 +44,8 @@ class EmdrApp(MDApp):
         super(EmdrApp, self).__init__(**kwargs)
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "Red"
         self.theme_cls.material_style = "M3"
         self.manager = ScreenManage()
         self. manager.transition.duration = 0
