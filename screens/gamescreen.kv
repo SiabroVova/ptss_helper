@@ -13,6 +13,12 @@
 
 <EmdrPlace>:
     ball: pong_ball
+    canvas.before:
+        Color:
+            rgba: self.color
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
     EmdrBall:
         id: pong_ball

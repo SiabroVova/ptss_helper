@@ -28,6 +28,7 @@ class EmdrPlace(Widget):
     size_ball = ListProperty()
     speed_ball = ListProperty()
     color_ball = ListProperty()
+    color = ListProperty()
 
     def serve_ball(self):
         self.ball.center = self.center
@@ -64,7 +65,8 @@ class GameScreen(MDScreen):
     speed = ListProperty([3, 3])
     size_ball = ListProperty([20, 20])
     volume = NumericProperty(1)
-    color_ball = ListProperty([1, 1, 0, 1])
+    color_ball = ListProperty([1, 1, 1, 1])
+    color = ([0, 0, 0, 1])
 
     def __init__(self, **kwargs):
         super(GameScreen, self).__init__(**kwargs)
@@ -82,6 +84,7 @@ class GameScreen(MDScreen):
         self.game.speed_ball = self.speed
         self.game.volume = self.volume
         self.game.color_ball = self.color_ball
+        self.game.color = self.color
         self.game.serve_ball()
         self.add_widget(self.game)
         self.game_schedule = Clock.schedule_interval(self.game.update, 1.0 / 60.0)
