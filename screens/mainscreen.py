@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.properties import ListProperty
 from kivymd.uix.behaviors import CommonElevationBehavior
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.card import MDCard
@@ -8,8 +9,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
 from const import SIZE_BALL, SPEED_BALL, \
-    BACKGROUND_BUTTON_COLOR_PASSIVE, BACKGROUND_BUTTON_COLOR_ACTIVE
-
+    BACKGROUND_BUTTON_COLOR_PASSIVE, BACKGROUND_BUTTON_COLOR_ACTIVE, \
+    FIRST_COLOR_BUTTON, SECOND_COLOR_BUTTON, THIRD_COLOR_BUTTON
 
 
 Builder.load_file('screens/mainscreen.kv')
@@ -47,6 +48,12 @@ class MainScreen(MDScreen):
 
     test_dialog = None
     game_screen = None
+    background_button_passive = ListProperty(BACKGROUND_BUTTON_COLOR_PASSIVE)
+    background_button_active = ListProperty(BACKGROUND_BUTTON_COLOR_ACTIVE)
+    first_color_button = ListProperty(FIRST_COLOR_BUTTON)
+    second_color_button = ListProperty(SECOND_COLOR_BUTTON)
+    third_color_button = ListProperty(THIRD_COLOR_BUTTON)
+
 
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
@@ -170,38 +177,29 @@ class MainScreen(MDScreen):
     def press_color_button(self, color: str):
         """ On release one of button color """
         self.game_screen = self.get_game_screen()
-        if color == 'yellow':
-            if self.ids.button_color_yellow.md_bg_color == [1, 1, 0, 0.05]:
-                self.game_screen.color_ball = [1, 1, 0, 0.65]
-                self.ids.button_color_yellow.md_bg_color = [1, 1, 0, 0.65]
-                self.ids.button_color_yellow.icon_color = [1, 1, 0, 1]
+        if color == 'first':
+            if self.ids.button_color_first.md_bg_color == BACKGROUND_BUTTON_COLOR_PASSIVE:
+                self.game_screen.color_ball = [1, 1, 1, 1]
+                self.game_screen.color = [0, 0, 0, 1]
+                self.ids.button_color_first.md_bg_color = BACKGROUND_BUTTON_COLOR_ACTIVE
 
-                self.ids.button_color_red.md_bg_color = [1, 0, 0, 0.05]
-                self.ids.button_color_red.icon_color = [1, 0, 0, 0.2]
+                self.ids.button_color_second.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
+                self.ids.button_color_third.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
 
-                self.ids.button_color_blue.md_bg_color = [0.21, 0.098, 1, 0.05]
-                self.ids.button_color_blue.icon_color = [0.21, 0.098, 1, 0.2]
+        elif color == 'second':
+            if self.ids.button_color_second.md_bg_color == BACKGROUND_BUTTON_COLOR_PASSIVE:
+                self.game_screen.color_ball = [0, 0, 0, 1]
+                self.game_screen.color = [1, 1, 1, 1]
+                self.ids.button_color_second.md_bg_color = BACKGROUND_BUTTON_COLOR_ACTIVE
 
-        elif color == 'red':
-            if self.ids.button_color_red.md_bg_color == [1, 0, 0, 0.05]:
-                self.game_screen.color_ball = [1, 0, 0, 0.65]
-                self.ids.button_color_red.md_bg_color = [1, 0, 0, 0.65]
-                self.ids.button_color_red.icon_color = [1, 0, 0, 1]
+                self.ids.button_color_first.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
+                self.ids.button_color_third.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
 
-                self.ids.button_color_yellow.md_bg_color = [1, 1, 0, 0.05]
-                self.ids.button_color_yellow.icon_color = [1, 1, 0, 0.2]
+        elif color == 'third':
+            if self.ids.button_color_third.md_bg_color == BACKGROUND_BUTTON_COLOR_PASSIVE:
+                self.game_screen.color_ball = [0, 0.8, 0, 1]
+                self.game_screen.color = [1, 1, 0, 1]
+                self.ids.button_color_third.md_bg_color = BACKGROUND_BUTTON_COLOR_ACTIVE
 
-                self.ids.button_color_blue.md_bg_color = [0.21, 0.098, 1, 0.05]
-                self.ids.button_color_blue.icon_color = [0.21, 0.098, 1, 0.2]
-
-        elif color == 'blue':
-            if self.ids.button_color_blue.md_bg_color == [0.21, 0.098, 1, 0.05]:
-                self.game_screen.color_ball = [0.21, 0.098, 1, 0.65]
-                self.ids.button_color_blue.md_bg_color = [0.21, 0.098, 1, 0.65]
-                self.ids.button_color_blue.icon_color = [0.21, 0.098, 1, 1]
-
-                self.ids.button_color_yellow.md_bg_color = [1, 1, 0, 0.05]
-                self.ids.button_color_yellow.icon_color = [1, 1, 0, 0.2]
-
-                self.ids.button_color_red.md_bg_color = [1, 0, 0, 0.05]
-                self.ids.button_color_red.icon_color = [1, 0, 0, 0.2]
+                self.ids.button_color_first.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
+                self.ids.button_color_second.md_bg_color = BACKGROUND_BUTTON_COLOR_PASSIVE
