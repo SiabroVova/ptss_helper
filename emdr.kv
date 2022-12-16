@@ -1,24 +1,7 @@
-<MainScreen>:
-    name: "mainscreen"
+<ScreenManage>:
 
-    MDBoxLayout:
-        orientation: "vertical"
+    MainScreen:
+        name: 'main_screen'
 
-
-<EmdrBall>:
-    size: 50, 50
-    color: 1, 1, 0, 1
-    canvas:
-        Color:
-            rgba: self.color
-        Ellipse:
-            pos: self.pos
-            size: self.size
-
-<EmdrPlace>:
-    ball: pong_ball
-
-    EmdrBall:
-        id: pong_ball
-        center: self.parent.center
-
+    GameScreen:
+        name: 'game_screen'

@@ -1,0 +1,200 @@
+<MainScreen>:
+    id: main_screen
+
+    MDTopAppBar:
+        id: toolbar_top
+        anchor_title: "left"
+        pos_hint: {"top": 1}
+        md_bg_color: app.theme_cls.accent_color
+        specific_text_color: 1, 1, 1, 1
+        title: 'МЕНЮ'
+        left_action_items: [["menu", lambda x: root.callback(x)]]
+
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": .5, 'top': 1.0 - toolbar_top.height / self.parent.height}
+        size_hint: 1, 0.9
+
+        Widget:
+            size_hint: 1, 0.4
+
+        MDRectangleFlatButton:
+            text: "Натисніть для старту"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            on_release: root.press_start_game()
+
+
+        Widget:
+            size_hint: 1, 0.3
+
+        MD3Card:
+            orientation: "vertical"
+            md_bg_color: app.theme_cls.accent_color
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint: .9, 0.3
+            padding: 5
+            elevation: 5
+
+
+            BoxLayout:
+                padding: 10
+
+            MDBoxLayout:
+                size_hint: .95, 1
+                pos_hint: {"center_x": 0.5}
+                spacing: 25
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        id: button_numeric_1
+                        size_hint: .2, 1
+                        icon: "numeric-1"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_active
+                        on_release: root.press_button_numeric(self.icon)
+
+                    MDFloatingActionButton:
+                        id: button_numeric_2
+                        size_hint: .2, 1
+                        icon: "numeric-2"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_button_numeric(self.icon)
+
+                    MDFloatingActionButton:
+                        id: button_numeric_3
+                        size_hint: .2, 1
+                        icon: "numeric-3"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_button_numeric(self.icon)
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        id: button_volume_off
+                        size_hint: .2, 1
+                        icon: "volume-off"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_button_volume(self.icon)
+
+                    MDFloatingActionButton:
+                        id: button_volume_high
+                        size_hint: .2, 1
+                        icon: "volume-high"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_active
+                        on_release: root.press_button_volume(self.icon)
+
+            MDBoxLayout:
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    text: "Швидкість"
+                    halign: 'center'
+
+                MDLabel:
+                    text: "Звук"
+                    halign: 'center'
+
+            Widget:
+
+            MDBoxLayout:
+                size_hint: .95, 1
+                pos_hint: {"center_x": 0.5}
+                spacing: 25
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        id: button_circle_size_12
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "12sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_active
+                        on_release: root.press_button_blank_circle(12)
+
+                    MDFloatingActionButton:
+                        id: button_circle_size_18
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "18sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_button_blank_circle(18)
+
+
+                    MDFloatingActionButton:
+                        id: button_circle_size_26
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "26sp"
+                        theme_icon_color: "Custom"
+                        icon_color: 0, 0, 0, 1
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_button_blank_circle(26)
+
+                MDBoxLayout:
+                    pos_hint: {"center_x": 0.5}
+
+                    MDFloatingActionButton:
+                        id: button_color_first
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: root.first_color_button
+                        md_bg_color: root.background_button_active
+                        on_release: root.press_color_button('first')
+
+                    MDFloatingActionButton:
+                        id: button_color_second
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: root.second_color_button
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_color_button('second')
+
+                    MDFloatingActionButton:
+                        id: button_color_third
+                        size_hint: .2, 1
+                        icon: "checkbox-blank-circle"
+                        icon_size: "20sp"
+                        theme_icon_color: "Custom"
+                        icon_color: root.third_color_button
+                        md_bg_color: root.background_button_passive
+                        on_release: root.press_color_button('third')
+
+            MDBoxLayout:
+                pos_hint: {"center_x": 0.5}
+
+                MDLabel:
+                    text: "Розмір"
+                    halign: 'center'
+
+                MDLabel:
+                    text: "Колір"
+                    halign: 'center'
+
+        Widget:
+            size_hint: 1, 0.01

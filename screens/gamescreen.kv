@@ -1,0 +1,25 @@
+<GameScreen>:
+    id: game_screen
+
+
+<EmdrBall>:
+    color: 1, 1, 0, 1
+    canvas:
+        Color:
+            rgba: self.color
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<EmdrPlace>:
+    ball: pong_ball
+    canvas.before:
+        Color:
+            rgba: self.color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    EmdrBall:
+        id: pong_ball
+        center: self.parent.center

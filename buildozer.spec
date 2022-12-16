@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Ptss Helper
+title = Ponova
 
 # (str) Package name
-package.name = ptssapp
+package.name = ponova
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.ptssapp
+package.domain = org.ponova
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -37,7 +37,7 @@ version.filename = %(source.dir)s/const.py
 requirements = python3,
                kivy==2.1.0,
                idna,
-               kivymd==1.1.1,
+               kivymd==1.0.2,
                pillow,
                ffmpeg,
                ffpyplayer
